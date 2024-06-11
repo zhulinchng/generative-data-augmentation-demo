@@ -1,6 +1,13 @@
 accelerate
 diffusers
 invisible_watermark
-torch
+torch==2.1.2
+torchaudio==2.1.2
+torchvision==0.16.2
 transformers
-xformers
+xformers==0.0.23.post1
+DeepCache
+pandas
+numpy
+torchmetrics[image]
+gradio
