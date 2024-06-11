@@ -15,14 +15,12 @@ if torch.cuda.is_available():
         model_path=model_path,
         device=device,
         use_torchcompile=False,
-        use_safetensors=True,
     )
 else:
     pipe = synth.pipe_img(
         model_path=model_path,
         device=device,
         use_torchcompile=False,
-        use_safetensors=True,
     )
 
 MAX_SEED = np.iinfo(np.int32).max
