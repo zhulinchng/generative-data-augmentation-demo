@@ -169,7 +169,8 @@ def pipe_img(
             cache_interval=cache_interval, cache_branch_id=cache_branch_id
         )  # lower is faster but lower quality
         helper.enable()
-        pipe.enable_xformers_memory_efficient_attention()
+        if torch.cuda.is_available():
+            pipe.enable_xformers_memory_efficient_attention()
         if use_torchcompile:
             pipe.unet = torch.compile(pipe.unet, mode="reduce-overhead", fullgraph=True)
     return pipe
