@@ -20,7 +20,7 @@ else:
     pipe = synth.pipe_img(
         model_path=model_path,
         device=device,
-        use_torchcompile=False,
+        apply_optimization=False,
     )
 
 MAX_SEED = np.iinfo(np.int32).max
