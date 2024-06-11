@@ -1,5 +1,5 @@
 ---
-title: Text-to-Image Gradio Template
+title: Generative Data Augmentation
 emoji: 🖼
 colorFrom: purple
 colorTo: red
