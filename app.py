@@ -335,11 +335,19 @@ with gr.Blocks(title="Generative Date Augmentation") as demo:
                     label="SSIM Score:", value="Generate to see score"
                 )
                 cos_sim = gr.Label(label="CLIP Score:", value="Generate to see score")
-            gr.Markdown(
-                f"""
-    Currently running on {power_device}.
-                """
-            )
+            if power_device == "GPU":
+                gr.Markdown(
+                    f"""
+Currently running on {power_device}.
+                    """
+                )
+            else:
+                gr.Markdown(
+                    f"""
+Currently running on {power_device}.
+Note: Running on CPU will take longer (approx. 6 minutes with default settings).
+                    """
+                )
 
         run_button.click(
             fn=infer,
