@@ -184,16 +184,21 @@ def update_sampling_steps(total_steps, sample_steps):
     return gr.update(value=total_steps)
 
 
+def update_format(image_format):
+    return gr.update(format=image_format)
+
+
 if torch.cuda.is_available():
     power_device = "GPU"
 else:
     power_device = "CPU"
 
-with gr.Blocks(title="Generative Date Augmentation") as demo:
+with gr.Blocks(title="Generative Date Augmentation Demo") as demo:
 
     gr.Markdown(
         """
     # Data Augmentation with Image-to-Image Diffusion Models via Prompt Interpolation.
+    Main GitHub Repo: [Generative Data Augmentation](https://github.com/zhulinchng/generative-data-augmentation) | Image Classification Demo: [Generative Augmented Classifiers](https://huggingface.co/spaces/czl/generative-augmented-classifiers).
     """
     )
     with gr.Row():
@@ -203,7 +208,7 @@ with gr.Blocks(title="Generative Date Augmentation") as demo:
 
             with gr.Row():
                 prompt1 = gr.Text(
-                    label="Prompt 1",
+                    label="Prompt for the image to synthesize. (Actual class)",
                     show_label=True,
                     max_lines=1,
                     placeholder="Enter your first prompt",
@@ -211,7 +216,7 @@ with gr.Blocks(title="Generative Date Augmentation") as demo:
                 )
             with gr.Row():
                 prompt2 = gr.Text(
-                    label="Prompt 2",
+                    label="Prompt to augment against. (Confusing class)",
                     show_label=True,
                     max_lines=1,
                     placeholder="Enter your second prompt",
@@ -321,9 +326,23 @@ with gr.Blocks(title="Generative Date Augmentation") as demo:
                         step=2,
                         value=0,
                     )
+                with gr.Row():
+                    image_type = gr.Radio(
+                        choices=[
+                            "webp",
+                            "png",
+                            "jpeg",
+                        ],
+                        label="Download Image Format",
+                        value="jpeg",
+                    )
         with gr.Column():
-            result = gr.Image(label="Result", show_label=False)
-
+            result = gr.Image(label="Result", show_label=False, format="jpeg")
+            image_type.change(
+                fn=update_format,
+                inputs=[image_type],
+                outputs=[result],
+            )
             gr.Markdown(
                 """
                 Metadata:
@@ -348,7 +367,13 @@ Currently running on {power_device}.
 Note: Running on CPU will take longer (approx. 6 minutes with default settings).
                     """
                 )
+            gr.Markdown(
+                """
+This demo is created as part of the 'Investigating the Effectiveness of Generative Diffusion Models in Synthesizing Images for Data Augmentation in Image Classification' dissertation.
 
+The user can augment an image by interpolating between two prompts, and specify the number of interpolation steps and the specific step to generate the image.
+            """
+            )
         run_button.click(
             fn=infer,
             inputs=[
