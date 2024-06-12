@@ -157,7 +157,6 @@ def pipe_img(
         scheduler=scheduler,
         torch_dtype=torch.float32,
         use_safetensors=use_safetensors,
-        safety_checker=None,
     ).to(device)
     if cpu_offload:
         pipe.enable_model_cpu_offload()
