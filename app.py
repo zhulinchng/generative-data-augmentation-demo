@@ -339,6 +339,8 @@ The user can augment an image by interpolating between two prompts, and specify 
 
 View the files used in this demo [here](https://huggingface.co/spaces/czl/generative-data-augmentation-demo/tree/main).
 
+Usage Instructions & Documentation [here](https://huggingface.co/spaces/czl/generative-data-augmentation-demo/blob/main/README.md).
+
 Note: Safety checker is enabled to prevent unsafe content from being displayed in this public demo.
             """
             )
