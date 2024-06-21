@@ -13,7 +13,7 @@ pinned: false
 
 Main GitHub Repo: [Generative Data Augmentation](https://github.com/zhulinchng/generative-data-augmentation) | Image Classification Demo: [Generative Augmented Classifiers](https://huggingface.co/spaces/czl/generative-augmented-classifiers).
 
-This demo is created as part of the 'Investigating the Effectiveness of Generative Diffusion Models in Synthesizing Images for Data Augmentation in Image Classification' dissertation.
+This demo is created as part of the 'Improving Fine-Grained Image Classification Using Diffusion-Based Generated Synthetic Images' dissertation.
 
 The user can augment an image by interpolating between two prompts, and specify the number of interpolation steps and the specific step to generate the image.
 
